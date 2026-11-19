@@ -44,7 +44,7 @@ export async function POST(
           ...input.inputPayload,
         }) as unknown as JobEnvelope,
     });
-    if (!deduplicated) triggerLocalWorkerIfDemo();
+    if (!deduplicated) await triggerLocalWorkerIfDemo();
     return jsonOk({ job, deduplicated }, deduplicated ? 200 : 202, requestId);
   });
 }

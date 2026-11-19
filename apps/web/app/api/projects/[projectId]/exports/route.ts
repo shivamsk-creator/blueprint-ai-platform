@@ -23,8 +23,16 @@ export async function POST(
     const actor = await requireActor(request, requestId);
     const { projectId } = await params;
     const input = await parseJsonBody(request, createExportSchema);
-    const result = await getBlueprintRepository().createExportJob(actor, projectId, input);
-    triggerLocalWorkerIfDemo();
-    return jsonOk(result, 202, requestId);
+    const repo = getBlueprintRepository();
+    const result = await repo.createExportJob(actor, projectId, input);
+    await triggerLocalWorkerIfDemo();
+    return jsonOk(
+      {
+        exportFile: repo.getExport(actor, result.exportFile.id),
+        job: repo.getAIJob(actor, result.job.id),
+      },
+      202,
+      requestId
+    );
   });
 }

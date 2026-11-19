@@ -41,7 +41,7 @@ export async function POST(
       }),
     });
 
-    if (!deduplicated) triggerLocalWorkerIfDemo();
-    return jsonOk({ job, deduplicated }, deduplicated ? 200 : 202, requestId);
+    if (!deduplicated) await triggerLocalWorkerIfDemo();
+    return jsonOk({ job: repo.getAIJob(actor, job.id), deduplicated }, deduplicated ? 200 : 202, requestId);
   });
 }

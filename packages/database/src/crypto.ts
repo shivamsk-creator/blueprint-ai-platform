@@ -30,8 +30,8 @@ export function buildKeyringFromEnv(env: Record<string, string | undefined> = pr
 
   if (primaryRaw) {
     keys.set(activeVersion, decodeKeyMaterial(primaryRaw));
-  } else if (env.NODE_ENV !== "production") {
-    // Ephemeral deterministic dev-only fallback key (strictly blocked in production)
+  } else if (env.NODE_ENV !== "production" || env.BLUEPRINT_DEMO_MODE === "true") {
+    // Deterministic dev/demo fallback key (strictly blocked in non-demo production)
     keys.set(activeVersion, crypto.createHash("sha256").update("blueprint-ai-dev-only-key").digest());
   } else {
     throw new DomainError({

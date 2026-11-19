@@ -59,7 +59,7 @@ export async function POST(
         includeAiReview: parsedInput.includeAiReview,
       }),
     });
-    triggerLocalWorkerIfDemo();
+    await triggerLocalWorkerIfDemo();
     return jsonOk({ run, job }, 202, requestId);
   });
 }

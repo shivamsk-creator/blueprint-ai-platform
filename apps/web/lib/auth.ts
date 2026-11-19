@@ -118,15 +118,14 @@ export async function resolveActiveWorkspaceId(actor: ActorContext, requestedWor
 }
 
 /**
- * In local demo mode without a separate worker daemon running, kick a non-blocking
- * queue drain pass so users see real queued -> running -> succeeded transitions immediately.
- * In production with Supabase configured, the dedicated `apps/worker` process consumes pgmq.
+ * In local or hosted demo mode without a separate worker daemon running, drain the
+ * queued job inline before returning so serverless runtimes (e.g. Vercel Functions)
+ * never freeze background work before completion.
+ * In live Supabase mode, the dedicated `apps/worker` process consumes pgmq asynchronously.
  */
-export function triggerLocalWorkerIfDemo(): void {
+export async function triggerLocalWorkerIfDemo(): Promise<void> {
   if (!isDemoModeEnabled()) return;
   const repo = getBlueprintRepository();
   const processor = new BlueprintJobProcessor(repo, { allowSyntheticFallback: true });
-  setImmediate(() => {
-    void processor.pollOnce(4, 120);
-  });
+  await processor.pollOnce(4, 120);
 }
