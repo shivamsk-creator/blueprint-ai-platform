@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Lint, Typecheck, Migrations, Tests & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check SQL migrations & RLS coverage
+        run: npm run check:migrations
+
+      - name: Typecheck all workspaces
+        run: npm run typecheck
+
+      - name: Lint web application
+        run: npm run lint
+
+      - name: Run automated test suite
+        run: npm run test
+
+      - name: Build web & worker
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: public-anon-placeholder-for-ci-build
+          BLUEPRINT_DEMO_MODE: "true"
+        run: npm run build

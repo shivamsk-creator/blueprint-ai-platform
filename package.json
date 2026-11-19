@@ -1,0 +1,28 @@
+{
+  "name": "blueprint-ai-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@blueprint/web",
+    "dev:worker": "npm run dev --workspace=@blueprint/worker",
+    "build": "npm run build --workspace=@blueprint/web && npm run build --workspace=@blueprint/worker",
+    "start": "npm run start --workspace=@blueprint/web",
+    "start:worker": "npm run start --workspace=@blueprint/worker",
+    "lint": "npm run lint --workspace=@blueprint/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check:migrations": "node scripts/check-migrations.mjs",
+    "ci:check": "npm run check:migrations && npm run typecheck && npm run lint && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.19.2",
+    "typescript": "^5",
+    "vitest": "^3.1.1"
+  }
+}

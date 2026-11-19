@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "paths": {
+      "@blueprint/domain": ["./packages/domain/src/index.ts"],
+      "@blueprint/validation": ["./packages/validation/src/index.ts"],
+      "@blueprint/database": ["./packages/database/src/index.ts"],
+      "@blueprint/ai-providers": ["./packages/ai-providers/src/index.ts"],
+      "@blueprint/ui": ["./packages/ui/src/index.ts"],
+      "@/*": ["./apps/web/*"]
+    }
+  },
+  "include": ["packages/*/src/**/*.ts", "packages/*/src/**/*.tsx", "apps/*/src/**/*.ts", "tests/**/*.ts"]
+}

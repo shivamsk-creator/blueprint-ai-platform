@@ -1,0 +1,28 @@
+{
+  "name": "@blueprint/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --noEmit",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@blueprint/ai-providers": "*",
+    "@blueprint/database": "*",
+    "@blueprint/domain": "*",
+    "@blueprint/validation": "*",
+    "@supabase/supabase-js": "^2.49.4",
+    "docx": "^9.4.1",
+    "pdf-lib": "^1.17.1",
+    "yaml": "^2.7.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.19.2",
+    "typescript": "^5"
+  }
+}

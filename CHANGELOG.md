@@ -1,0 +1,14 @@
+# Changelog
+
+All notable changes to Blueprint AI are documented in this file following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
+
+## [0.1.0] - 2026-11-19
+
+### Added
+- **Monorepo Foundation (`P00`)**: Structured npm workspaces (`apps/web`, `apps/worker`, `packages/domain`, `packages/validation`, `packages/database`, `packages/ai-providers`, `packages/ui`) with strict TypeScript, Tailwind CSS v4 tokens, CI workflow (`.github/workflows/ci.yml`), and automated SQL migration + RLS static verifier (`scripts/check-migrations.mjs`).
+- **Database Schema & RLS (`P00-04`, `P01-03`)**: 9 sequential PostgreSQL/Supabase migrations defining all 52 tables, 11 enums, pgmq durable queues (`blueprint_jobs`, `blueprint_jobs_dlq`), security-definer RLS helper functions, RLS policies on 100% of tables, private storage bucket policies (`project-files`, `exports`), append-only `audit_logs` trigger, immutable `artifact_revisions` trigger, and same-project polymorphic `traceability_links` trigger (`R-001`).
+- **Authentication, Multi-Tenancy & RBAC (`P01`)**: Next.js 16 `proxy.ts` session refresh and security headers, Supabase Auth sign-in/sign-up/forgot-password/callback flows, workspace onboarding, workspace switcher, hashed member invitations, and 5-role RBAC enforcement (`owner`, `admin`, `manager`, `contributor`, `reviewer`).
+- **Application Shell & All 35+ Screens (`P02`–`P10`)**: High-craft Architectural Blueprint Studio UI with 16 reusable domain components (`AppShell`, `ProjectSidebar`, `StatusBadge`, `DataTable`, `ArtifactEditor`, `AITaskPanel`, `ProviderSelector`, `RequirementDrawer`, `VersionDiff`, `TraceabilityMatrix`, `ValidationIssueList`, `ERDCanvas`, `ArchitectureCanvas`, `JobStatus`, `ApprovalPanel`, `FileUploader`).
+- **Multi-Provider AI Foundation (`P04`)**: Provider-agnostic adapters for OpenAI, Google Gemini, Anthropic Claude, and OpenAI-compatible endpoints; AES-256-GCM server-only secret encryption with key rotation; model capability catalogue and server-side task compatibility enforcement; per-task override routing with fallback; server-side token usage & cost attribution.
+- **Durable Queue Worker & Exports (`P05`, `P10-03`)**: Persistent pgmq worker handling all 7 versioned job types (`ai.generate_artifact`, `ai.regenerate_section`, `discovery.analyze`, `validation.run`, `research.synthesize`, `export.generate`, `usage.reconcile`) with retry backoff, jitter, cancellation, DLQ archival, and multi-format export rendering (PDF, DOCX, Markdown, JSON, SQL, OpenAPI 3.1 YAML).
+- **Automated Verification (`P11-01`)**: Vitest security, RLS, RBAC, AI routing, queue recovery, idempotency, revision immutability, exact-revision approval, traceability, export rendering, and API route contract test suites.

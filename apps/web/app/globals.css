@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "../../../packages/ui/src/tokens.css";
+
+@source "../../../packages/ui/src/**/*.{ts,tsx}";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  background-color: var(--bp-canvas);
+  color: var(--bp-ink);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+}
+
+code,
+pre {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}

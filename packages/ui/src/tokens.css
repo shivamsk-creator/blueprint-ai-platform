@@ -1,0 +1,72 @@
+/* Blueprint AI — Architectural Blueprint Studio Design Tokens
+ * Centralized CSS custom properties designed for clean Stitch visual reskinning (P00-01 / P00-03).
+ */
+
+:root {
+  /* Surfaces */
+  --bp-canvas: #f6f8fb;
+  --bp-surface: #ffffff;
+  --bp-surface-subtle: #f1f5f9;
+  --bp-surface-muted: #e9eef6;
+  --bp-chrome: #0b1220;
+  --bp-chrome-elevated: #131c31;
+  --bp-chrome-border: #1e293b;
+
+  /* Ink / Typography Colors (WCAG AA >= 4.5:1) */
+  --bp-ink: #0f172a;
+  --bp-ink-secondary: #334155;
+  --bp-ink-muted: #64748b;
+  --bp-ink-on-chrome: #e2e8f0;
+  --bp-ink-on-chrome-muted: #94a3b8;
+
+  /* Borders */
+  --bp-border: #dce3ee;
+  --bp-border-strong: #c2cede;
+
+  /* Blueprint Cobalt & Drafting Cyan Accents */
+  --bp-accent: #1d4ed8;
+  --bp-accent-hover: #1e40af;
+  --bp-accent-soft: #eff6ff;
+  --bp-accent-border: #bfdbfe;
+  --bp-cyan: #0284c7;
+
+  /* Semantic Status Tokens */
+  --bp-success-fg: #047857;
+  --bp-success-bg: #ecfdf5;
+  --bp-success-border: #a7f3d0;
+
+  --bp-info-fg: #1d4ed8;
+  --bp-info-bg: #eff6ff;
+  --bp-info-border: #bfdbfe;
+
+  --bp-warn-fg: #b45309;
+  --bp-warn-bg: #fffbeb;
+  --bp-warn-border: #fde68a;
+
+  --bp-danger-fg: #be123c;
+  --bp-danger-bg: #fff1f2;
+  --bp-danger-border: #fecdd3;
+
+  --bp-neutral-fg: #334155;
+  --bp-neutral-bg: #f1f5f9;
+  --bp-neutral-border: #cbd5e1;
+
+  /* Elevation & Geometry */
+  --bp-radius-sm: 6px;
+  --bp-radius-md: 10px;
+  --bp-radius-lg: 14px;
+  --bp-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --bp-shadow-md: 0 4px 12px rgba(15, 23, 42, 0.07);
+}
+
+.bp-grid-bg {
+  background-color: var(--bp-canvas);
+  background-image:
+    linear-gradient(to right, rgba(29, 78, 216, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(29, 78, 216, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bp-tabular {
+  font-variant-numeric: tabular-nums;
+}
